@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>LoginPage</title>
 </head>
 <body>
 
@@ -20,14 +20,13 @@
         <!-- Icon -->
         <div class="fadeIn first">
             <h1>Bem vindo</h1>
-            <!--<img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />-->
           </div>
     
         <!-- Login Form -->
         <form action='/login' method=POST>
             {{ csrfField() }}
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="login (only letters)" maxlength="10" size="10" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
+          <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" maxlength="10" size="10">
           <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
     
@@ -165,6 +164,27 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
 }
 
 input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
+input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;

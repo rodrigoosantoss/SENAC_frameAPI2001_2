@@ -1,4 +1,4 @@
-git 'use strict'
+'use strict'
 
 /** @type {import('@adonisjs/framework/src/Hash')} */
 const Hash = use('Hash')
