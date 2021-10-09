@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+    <style type="text/css">
+
+body {
+    background-color: white;
+}
+h1 {
+    color: black;
+    padding: 60px;
+}
+
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,12 +20,19 @@
 </head>
     <body>
         <h1>Login</h1>
-        <h3>{{user}} </h3>
         <form action='/login' method=POST>
             {{ csrfField() }}
+            <label for="email"> Email:</label>
+            <input type="text" id="email" name="email">
+
+            <label for="Password"> Password:</label>
+            <input type="text" id="password" name="password">
+
+            <label>
             <button type="submit">
                 <span>Salvar</span>
             </button>
+            
 </form>        
     </body>
 
