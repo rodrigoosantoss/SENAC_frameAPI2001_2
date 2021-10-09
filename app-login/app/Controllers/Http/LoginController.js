@@ -1,30 +1,54 @@
 'use strict'
 
-const Usuario = require("../../Models/Usuario")
+const Usuario = use('App/Models/Usuario')
 
 class LoginController {
-
-//ASYNC tratamento assincrono + objeto view
-    async index({view,session}){
-        return view.render('login')
-
+    async index({view, response, session}) {
+        if(session.get('nome')) 
+            return response.redirect('/bemvindo');           
+        else
+            return view.render('login');
     }
 
-    async login({request, response, session}){
-        const usuario = new Usuario
-        usuario.email = request.input('email')
-        usuario.senha = request.input('senha')
+    async login({request, response, session}) {
+        const email = request.input('email');
+        const senha = request.input('senha');
+        
+        const usuario = await Usuario.findBy("email", email);
 
-        if(usuario.email == 'admin@admin.com' && usuario.senha == '123456'){
-            console.log("Logado com sucesso!!")
-        } else{
-            console.log("Login ou Senha INVÁLIDOS!")
-  
+        if(usuario && usuario.senha == senha) {
+             console.log("Logado com sucesso!");
+             const usuarioJSON = usuario.toJSON();            
+             delete usuarioJSON.senha;
+             session.put('usuario', usuarioJSON);
+             return response.redirect('/bemvindo');           
         }
-        return response.redirect('back')
+        else {
+            console.log("Usuário ou senha invalidos");
+            session.flash({
+                notificacao: "Usuário ou senha inválidos!"
+            })
+            return response.redirect('back');
+        }        
     }
 
-    
+    async logout({session,response}){
+        session.clear();
+        return response.redirect('/');
+    }
+
+    async bemVindo({view, session, response}) {
+        const usuario = session.get('usuario');
+        console.log("Usuario");
+        console.log(usuario);
+        if(usuario) { 
+            return view.render('bemvindo', {usuario: usuario});
+        }
+        else {
+            response.redirect('/');
+        }
+    }
+
 }
 
 module.exports = LoginController

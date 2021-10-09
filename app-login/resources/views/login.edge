@@ -25,8 +25,8 @@
         <!-- Login Form -->
         <form action='/login' method=POST>
             {{ csrfField() }}
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="login (only letters)" maxlength="10" size="10" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
-          <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" maxlength="10" size="10">
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="login" maxlength="20" size="20">
+          <input type="password" id="password" class="fadeIn third" name="password" placeholder="password" maxlength="20" size="20">
           <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
     
