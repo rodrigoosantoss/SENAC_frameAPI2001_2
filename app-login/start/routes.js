@@ -1,6 +1,7 @@
 'use strict'
 
-const { route } = require('@adonisjs/framework/src/Route/Manager')
+const { route } = require('@adonisjs/framework/src/Route/Manager');
+const LoginController = require('../app/Controllers/Http/LoginController');
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ const Route = use('Route')
 
 //Route.on('/').render('welcome')
 Route.get('/', 'LoginController.index'); 
+Route.post('/login', 'LoginController.login');

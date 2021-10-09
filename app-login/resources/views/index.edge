@@ -8,7 +8,9 @@
 </head>
     <body>
         <h1>Login</h1>
+        <h3>{{user}} </h3>
         <form action='/login' method=POST>
+            {{ csrfField() }}
             <button type="submit">
                 <span>Salvar</span>
             </button>
