@@ -1,24 +1,30 @@
 'use strict'
 
+const Usuario = require("../../Models/Usuario")
+
 class LoginController {
 
 //ASYNC tratamento assincrono + objeto view
     async index({view,session}){
-        let username = session.get('username', 'Rodrigo Caetano')
-        return view.render('login', {user: username})
+        return view.render('login')
 
     }
 
-    async login({response, session}){
-    let username = session.get('username', '')
-    if(username){
-        session.clear()
-    } else{
-        session.put('username', 'Não é Rodrigo')
+    async login({request, response, session}){
+        const usuario = new Usuario
+        usuario.email = request.input('email')
+        usuario.senha = request.input('senha')
+
+        if(usuario.email == 'admin@admin.com' && usuario.senha == '123456'){
+            console.log("Logado com sucesso!!")
+        } else{
+            console.log("Login ou Senha INVÁLIDOS!")
+  
         }
-    
-    response.redirect('back')
+        return response.redirect('back')
     }
+
+    
 }
 
 module.exports = LoginController
