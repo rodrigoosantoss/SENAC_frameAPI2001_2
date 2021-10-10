@@ -1,24 +1,48 @@
 'use strict'
 
+const Usuario = use('App/Models/Usuario')
+
 class LoginController {
-
-//ASYNC tratamento assincrono + objeto view
-    async index({view,session}){
-        let username = session.get('username', 'Rodrigo Caetano')
-        return view.render('login', {user: username})
-
+    async index({view, response, session}) {
+        if(session.get('nome')) 
+            return response.redirect('/bemvindo');           
+        else
+            return view.render('login');
     }
     
 
-    async login({response, session}){
-    let username = session.get('username', '')
-    if(username){
-        session.clear()
-    } else{
-        session.put('username', 'Não é Rodrigo')
+    async login({request, response, session}) {
+        const email = request.input('email');
+        const senha = request.input('senha');
+        
+        const usuario = await Usuario.findBy("email", email);
+
+        if(usuario && usuario.senha == senha) {
+             console.log("Logado com sucesso!");
+             const usuarioJSON = usuario.toJSON();            
+             delete usuarioJSON.senha;
+             session.put('usuario', usuarioJSON);
+             return response.redirect('/bemvindo');           
         }
-    
-    response.redirect('back')
+        else {
+            console.log("Usuário ou senha invalidos");
+            session.flash({
+                notificacao: "Usuário ou senha inválidos!"
+            })
+            return response.redirect('back');
+        }        
+    }
+
+    async bemVindo({view, session, response}) {
+        const usuario = session.get('usuario');
+        console.log("Usuario");
+        console.log(usuario);
+        if(usuario) { 
+            return view.render('bemvindo', {usuario: usuario});
+        }
+        else {
+            response.redirect('/');
+        }
     }
 }
 
