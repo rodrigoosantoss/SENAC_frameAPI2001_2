@@ -8,6 +8,7 @@ class LoginController {
         return view.render('login', {user: username})
 
     }
+    
 
     async login({response, session}){
     let username = session.get('username', '')
