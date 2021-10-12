@@ -9,11 +9,6 @@ class LoginController {
         return view.render('login');
     }
     
-    async loginBasic({view}){
-        return view.render('loginBasic')
-    }
-
-
     async login({request, response}) {
         const usuario = new Usuario();
         usuario.email = request.input('email');
