@@ -21,5 +21,5 @@ const Route = use('Route')
 Route.get('/', 'LoginController.index');
 Route.post('/login', 'LoginController.login');
 Route.get('/logout', 'LoginController.logout');
-Route.get('/bemvindo', 'LoginController.bemvindo');
+Route.get('/bemvindo', 'LoginController.bemVindo');
 
