@@ -9,34 +9,28 @@ class LoginController {
         return view.render('login');
     }
     
+    async loginBasic({view}){
+        return view.render('loginBasic')
+    }
+
 
     async login({request, response}) {
         const usuario = new Usuario();
         usuario.email = request.input('email');
         usuario.senha = request.input('senha');
-            if(usuario.email == 'admin@admin.com' && usuario.senha == '123456'){
+            if(usuario.email == "admin@admin.com" && usuario.senha == "12345"){
                 console.log("Congrats LOGADO com sucesso!!")
+                return response.redirect('/bemvindo')
+            } else {
+            console.log("que coisa, ainda não deu!!")
+                   } 
+                  return response.redirect('/bemvindo')
             }
-        
-        else {
-            console.log("Usuário ou senha invalidos");
-            session.flash({
-                notificacao: "Usuário ou senha inválidos!"
-            })
-            return response.redirect('back');
-        }        
-    }
+            
 
-    async bemVindo({view, session, response}) {
-        const usuario = session.get('usuario');
-        console.log("Usuario");
-        console.log(usuario);
-        if(usuario) { 
-            return view.render('bemvindo', {usuario: usuario});
-        }
-        else {
-            response.redirect('/');
-        }
+    async bemVindo({view}) {
+        return view.render('/bemvindo');
+
     }
 }
 
