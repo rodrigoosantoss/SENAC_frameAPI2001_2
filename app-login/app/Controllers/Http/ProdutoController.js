@@ -1,12 +1,14 @@
 'use strict'
 
-const Usuario = use('App/Models/Usuario')
+const Produto = use('App/Models/Produto')
 const db = use('App/Models/db')
 
 
 class ProdutoController {
     async index({view}) {
-        return view.render('produtos/tabela');
+        const produtos = await Produto.all();
+        console.log("O que esta vindo", produtos)
+        return view.render('produtos.tabela', { produtos: produtos.toJSON()});
     }
 }    
 

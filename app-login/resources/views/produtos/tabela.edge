@@ -11,66 +11,35 @@
 </head>
 <body>
 
-    <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Primeiro</th>
-            <th scope="col">Último</th>
-            <th scope="col">Nickname</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
-      
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Primeiro</th>
-            <th scope="col">Último</th>
-            <th scope="col">Nickname</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
-      </table>
+  <a href="http://localhost:3333/produtos/novo">Novo</a>
+  @if(produtos && produtos.length > 0)
+  <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Preço</th>
+              <th scope="col">Categoria</th>
+              <th scope="col">Editar</th>
+             <th scope="col">Deletar</th>
+            </tr>
+          </thead>
+          <tbody>
+            @each(produto in produtos)
+            <tr>
+             <td>{{produto.Id}}</td>
+             <td>{{produto.nome}}</td>
+             <td>{{produto.preco}}</td>
+             <td>{{produto.categoria}}</td>
+             <td>Editar</td>
+             <td>Deletar</td>
+            </tr>
+          </tbody>
+        @endeach
+        </table>
+         @else
+          <h2>Não há produtos cadastrados!</h2>
+      @endif
+  
 </body>
 </html>
