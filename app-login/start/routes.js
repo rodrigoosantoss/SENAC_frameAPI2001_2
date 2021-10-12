@@ -1,5 +1,7 @@
 'use strict'
 
+const ProdutoController = require('../app/Controllers/Http/ProdutoController');
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -22,5 +24,6 @@ Route.get('/', 'LoginController.index');
 Route.post('/login', 'LoginController.login');
 Route.get('/logout', 'LoginController.logout');
 Route.get('/bemvindo', 'LoginController.bemVindo');
-Route.get('/produtos', 'ProdutoController.index')
+Route.get('/produtos', 'ProdutoController.index');
 
+Route.post('/novo', 'ProdutoController.cadastrar');

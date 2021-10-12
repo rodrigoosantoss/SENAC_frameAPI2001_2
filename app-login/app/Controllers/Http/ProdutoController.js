@@ -10,6 +10,12 @@ class ProdutoController {
         console.log("O que esta vindo", produtos)
         return view.render('produtos.tabela', { produtos: produtos.toJSON()});
     }
+
+    async cadastrar({view}){
+        return view.render('produtos.cadastro')
+    }
+
+   
 }    
 
 module.exports = ProdutoController
