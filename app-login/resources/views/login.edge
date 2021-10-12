@@ -30,7 +30,9 @@
           <input type="text" id="senha" class="fadeIn third" name="senha" placeholder="senha">
           <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
-    
+        @if(old('Notification'))
+        <p style="color: red">{{old('Notification')}}</p>
+        @endif
         <!-- Remind Passowrd -->
         <div id="formFooter">
           <a class="underlineHover" href="#">Forgot Password?</a>
