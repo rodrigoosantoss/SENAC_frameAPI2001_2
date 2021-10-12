@@ -30,7 +30,7 @@ class LoginController {
         if(nome){
             return view.render('/bemvindo', {nome, nome});
         }else{
-            response.redirect('/')
+            response.redirect('/login')
         }
 
     }
